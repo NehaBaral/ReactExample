@@ -17,12 +17,18 @@ class TodoApp extends Component {
     const todos = [...this.state.todos,todo];//spread operater
     this.setState({todos});
   }
+
+  deleteTodo = (id) =>{
+    const todos = this.state.todos.filter(todo => todo.id !== id);//es6 filter method
+    this.setState({todos});
+  }
   render() {
+    const {todos} = this.state;//destructing objects
     return (
       <div className="App">
         <Navbar />
         <div className='container'>
-          <TodoList todos={this.state.todos}/>
+          <TodoList deleteTodo={this.deleteTodo} todos={this.state.todos}/>
           <AddForm addTodo={this.addTodo}/>
         </div>
       </div>
